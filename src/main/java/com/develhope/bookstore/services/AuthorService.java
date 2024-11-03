@@ -2,6 +2,7 @@ package com.develhope.bookstore.services;
 
 import com.develhope.bookstore.entities.Author;
 import com.develhope.bookstore.repositories.AuthorRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -10,6 +11,7 @@ import java.util.Optional;
 @Service
 public class AuthorService {
     // parameters
+    @Autowired
     private AuthorRepository authorRepository;
 
     // CRUD
@@ -24,14 +26,14 @@ public class AuthorService {
      * get an author by id
      */
     public Optional<Author> getAuthorById(Long id){
-         return authorRepository.findById(id);
+         return authorRepository.findActiveById(id);
     }
 
     /**
      * get author catalogue
      */
-    public List<Author> getAuthorCatalogue(){
-        return authorRepository.findAll();
+    public List<Author> getAuthorCatalog(){
+        return authorRepository.findAllActive();
     }
 
     /**
@@ -56,4 +58,13 @@ public class AuthorService {
     /**
      * eliminate using the elimination logic so the user is not deleted from the database but can deactivate the profile
      */
+    public String deleteAuthor(Long id){
+        Optional<Author> authorOptional = authorRepository.findActiveById(id);
+        if (authorOptional.isPresent()){
+            authorRepository.deactivate(id);
+            return "Author successfully deactivated";
+        } else {
+            return "Author id not found";
+        }
+    }
 }

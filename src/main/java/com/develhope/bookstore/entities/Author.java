@@ -20,14 +20,12 @@ public class Author extends User{
     public Author(){}
 
     // constructor with all the parameters
-
     public Author(Long id, String name, boolean isActive, String email, String password, String description, List<Book> bookCatalogue, List<Orders> orders) {
         super(id, name, isActive, email, password);
         this.description = description;
         this.bookCatalogue = bookCatalogue;
         this.orders = orders;
     }
-
 
     // getters and setters
 
