@@ -9,6 +9,7 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String name;
+    @Column(name = "is_active")
     private boolean isActive = true;
     @Column(unique = true)
     private String email;
