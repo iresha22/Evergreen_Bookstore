@@ -19,28 +19,23 @@ public class Orders {
     @JoinColumn(name = "id_client")
     private Client client;
     @OneToMany(mappedBy = "orders")
-    private List<BookCopies> bookCopies;
-    @ManyToMany
-    @JoinTable(
-           name = "author_orders",
-           joinColumns = @JoinColumn(name = "id_author"),
-           inverseJoinColumns = @JoinColumn(name = "id_order")
-    )
-    private List<Author> author;
+    private List<UsedBooks> usedBooks;
 
-    // empty constructo
+    // empty constructor
     public Orders(){}
     // constructor with all the parameters
 
-    public Orders(Double totalCost, boolean isActive, Client client, List<BookCopies> bookCopies, List<Author> author) {
+
+    public Orders(Long id, Double totalCost, boolean isActive, Client client, List<UsedBooks> usedBooks) {
+        this.id = id;
         this.totalCost = totalCost;
         this.isActive = isActive;
         this.client = client;
-        this.bookCopies = bookCopies;
-        this.author = author;
+        this.usedBooks = usedBooks;
     }
 
     // getters and setters
+
     public Long getId() {
         return id;
     }
@@ -69,19 +64,11 @@ public class Orders {
         this.client = client;
     }
 
-    public List<BookCopies> getBookCopies() {
-        return bookCopies;
+    public List<UsedBooks> getUsedBooks() {
+        return usedBooks;
     }
 
-    public void setBookCopies(List<BookCopies> bookCopiesCatalogue) {
-        this.bookCopies = bookCopiesCatalogue;
-    }
-
-    public List<Author> getAuthor() {
-        return author;
-    }
-
-    public void setAuthor(List<Author> author) {
-        this.author = author;
+    public void setUsedBooks(List<UsedBooks> usedBooks) {
+        this.usedBooks = usedBooks;
     }
 }

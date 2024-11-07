@@ -12,38 +12,33 @@ import java.util.List;
 @Table(name = "client")
 public class Client extends User{
     // parameters
-    private String address;
+    // the user is able to leave a review and receive a review
     private String review;
-    private LocalDate birthdate;
     // relations
+    // client can make orders and receive orders
     @OneToMany(mappedBy = "client")
     private List<Orders> orderCatalogue;
-    // add paymentcard list
+    @OneToMany(mappedBy = "client")
+    private List<UsedBooks> usedBooks;
+    // add payment card list
     private List<String> paymentCards;
 
     // empty constructor
     public Client(){}
 
     // constructor with all the parameters
-    public Client(Long id, String name, boolean isActive, String email, String password, String address, String review,
-                  LocalDate birthdate, List<Orders> orderCatalogue, List<String> paymentCards) {
-        super(id, name, isActive, email, password);
-        this.address = address;
+
+
+    public Client(Long id, String name, Integer age, String address, boolean isActive, String email, String password,
+                  String review, List<Orders> orderCatalogue, List<UsedBooks> usedBooks,List<String> paymentCards) {
+        super(id, name, age, address, isActive, email, password);
         this.review = review;
-        this.birthdate = birthdate;
         this.orderCatalogue = orderCatalogue;
+        this.usedBooks = usedBooks;
         this.paymentCards = paymentCards;
     }
 
-
     // getters and setters
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
 
     public String getReview() {
         return review;
@@ -53,20 +48,20 @@ public class Client extends User{
         this.review = review;
     }
 
-    public LocalDate getBirthdate() {
-        return birthdate;
-    }
-
-    public void setBirthdate(LocalDate birthdate) {
-        this.birthdate = birthdate;
-    }
-
     public List<Orders> getOrderCatalogue() {
         return orderCatalogue;
     }
 
     public void setOrderCatalogue(List<Orders> orderCatalogue) {
         this.orderCatalogue = orderCatalogue;
+    }
+
+    public List<UsedBooks> getUsedBooks() {
+        return usedBooks;
+    }
+
+    public void setUsedBooks(List<UsedBooks> usedBooks) {
+        this.usedBooks = usedBooks;
     }
 
     public List<String> getPaymentCards() {

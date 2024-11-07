@@ -9,6 +9,8 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String name;
+    private Integer age;
+    private String address;
     @Column(name = "is_active")
     private boolean isActive = true;
     @Column(unique = true)
@@ -19,14 +21,15 @@ public class User {
     public User(){}
 
     // constructor with all the parameters
-    public User(Long id, String name,boolean isActive, String email, String password) {
+    public User(Long id, String name, Integer age, String address, boolean isActive, String email, String password) {
         this.id = id;
         this.name = name;
+        this.age = age;
+        this.address = address;
         this.isActive = isActive;
         this.email = email;
         this.password = password;
     }
-
 
     // getters and setters
 
@@ -40,6 +43,22 @@ public class User {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Integer getAge() {
+        return age;
+    }
+
+    public void setAge(Integer age) {
+        this.age = age;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public boolean isActive() {
